@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TabWidget</class>
+ <widget class="QTabWidget" name="TabWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1142</width>
+    <height>761</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TabWidget</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QTabBar::tab{
+width: 200px;
+height: 14px;
+padding: 10px;
+background: white;
+margin-top: 8px;
+border-radius: 10px;
+margin-bottom: 5px;
+margin-left: 8px;
+border: 2px solid transparent;
+}
+
+QTabBar::tab:selected{
+background: white;
+border: 2px solid #0FF3E8;
+}
+
+QTabBar::tab:hover{
+background: #c9c9c9;
+color: white;
+}
+
+QTabBar::tab:selected:hover{
+background: white;
+color: black;
+}
+
+QTabBar::close-button{
+image: url(:/icons/images/black_cross.png);
+margin-right: 3px;
+margin-top: 3px;
+background: transparent;
+padding: 2px;
+border-radius: 4px;
+}
+
+QTabBar::close-button:hover{
+image: url(:/icons/images/white_cross.png);
+}
+
+CustomTabWidget{
+border: 2px solid;
+}
+</string>
+  </property>
+  <property name="elideMode">
+   <enum>Qt::TextElideMode::ElideRight</enum>
+  </property>
+  <property name="tabsClosable">
+   <bool>true</bool>
+  </property>
+  <property name="tabBarAutoHide">
+   <bool>false</bool>
+  </property>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

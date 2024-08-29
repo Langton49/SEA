@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>images/angle-left.png</file>
+        <file>images/angle-right.png</file>
+        <file>images/Black-angle-left.png</file>
+        <file>images/Black-angle-right.png</file>
+        <file>images/Black-refresh.png</file>
+        <file>images/black_cross.png</file>
+        <file>images/document-circle-wrong.png</file>
+        <file>images/file.png</file>
+        <file>images/loading.gif</file>
+        <file>images/menu-dots-vertical.png</file>
+        <file>images/minimize.png</file>
+        <file>images/minus.png</file>
+        <file>images/plus.png</file>
+        <file>images/refresh.png</file>
+        <file>images/square.png</file>
+        <file>images/white_cross.png</file>
+    </qresource>
+</RCC>

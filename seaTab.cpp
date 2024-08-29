@@ -90,11 +90,6 @@ void seaTab::processURL()
     if (!urlText.contains(' ') && parts.size() >= 2 && QUrl(urlText).scheme().isEmpty()){
         url1 = QUrl::fromUserInput(urlText);
         url1.setScheme("https");
-        if(!doesUrlExist(url1)){
-            QByteArray encodedString = QUrl::toPercentEncoding(urlText);
-            QString newString = "https://www.google.com/search?q=" + encodedString;
-            url1 = QUrl(newString);
-        }
     } else {
         if(!QUrl(urlText).scheme().isEmpty()){
             url1 = QUrl(urlText);

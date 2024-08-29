@@ -150,7 +150,7 @@ void seaTabWidget::addNewTab() {
             });
         });
 
-        connect(webView, &QWebEngineView::loadFinished, this, [this, newIndex, webView]() {
+        connect(webView, &QWebEngineView::loadFinished, this, [this, webView](bool ok) {
             QWebEnginePage *page = webView->page();
 
             auto iconChangedPtr = std::make_shared<bool>(false);
@@ -162,11 +162,16 @@ void seaTabWidget::addNewTab() {
                 tabBar()->update();
             });
 
-            QTimer::singleShot(2000, [this, newIndex, iconChangedPtr]() {
+            QTimer::singleShot(800, [this, ok, iconChangedPtr]() {
                 if (!*iconChangedPtr) {
                     loading->stop();
-                    setTabIcon(currentIndex(), defaultFavicon);
-                    tabBar()->update();
+                    if(!ok){
+                        setTabIcon(currentIndex(), noEndpointFavicon);
+                        tabBar()->update();
+                    } else {
+                        setTabIcon(currentIndex(), defaultFavicon);
+                        tabBar()->update();
+                    }
                 }
             });
         });

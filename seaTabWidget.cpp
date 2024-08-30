@@ -74,7 +74,7 @@ void seaTabWidget::setupNewTabButton()
     layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(newTab);
     setCornerWidget(cornerWidget, Qt::TopLeftCorner);
-    connect(newTab, &QPushButton::clicked, this, &seaTabWidget::addNewTab);
+    connect(newTab, &QPushButton::clicked, this, &seaTabWidget::onNewTabButtonClicked);
     setTabsClosable(true);
     connect(this, &QTabWidget::tabCloseRequested, this, [this](int index){
         removeTab(index);
@@ -129,15 +129,23 @@ bool seaTabWidget::eventFilter(QObject *obj, QEvent *event)
     return QTabWidget::eventFilter(obj, event);
 }
 
-void seaTabWidget::addNewTab() {
+void seaTabWidget::onNewTabButtonClicked()
+{
+    addNewTab();
+}
+
+void seaTabWidget::addNewTab(const QUrl &url) {
     seaTab *newTab = new seaTab(this);
     QWebEngineView *webView = newTab->getWebView();
     int newIndex = addTab(newTab, QString("New Tab"));
     setTabIcon(newIndex, defaultFavicon);
     count++;
     setCurrentIndex(newIndex);
-
+    connect(newTab, &seaTab::newTabRequested, this, &seaTabWidget::addNewTab);
     if (webView) {
+        if (!url.isEmpty()) {
+            webView->load(url);
+        }
         connect(webView, &QWebEngineView::titleChanged, this, [this, newIndex](const QString &title) {
             updateTabTitle(newIndex, title);
         });

@@ -35,7 +35,11 @@ namespace {
 #ifdef QT_MOC_HAS_STRINGDATA
 struct qt_meta_stringdata_CLASSseaTabWidgetENDCLASS_t {};
 constexpr auto qt_meta_stringdata_CLASSseaTabWidgetENDCLASS = QtMocHelpers::stringData(
-    "seaTabWidget"
+    "seaTabWidget",
+    "addNewTab",
+    "",
+    "url",
+    "onNewTabButtonClicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -48,12 +52,22 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSseaTabWidgetENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       0,    0, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        0,       // signalCount
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   32,    2, 0x0a,    1 /* Public */,
+       1,    0,   35,    2, 0x2a,    3 /* Public | MethodCloned */,
+       4,    0,   36,    2, 0x08,    4 /* Private */,
+
+ // slots: parameters
+    QMetaType::Void, QMetaType::QUrl,    3,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -66,17 +80,30 @@ Q_CONSTINIT const QMetaObject seaTabWidget::staticMetaObject = { {
     nullptr,
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSseaTabWidgetENDCLASS_t,
         // Q_OBJECT / Q_GADGET
-        QtPrivate::TypeAndForceComplete<seaTabWidget, std::true_type>
+        QtPrivate::TypeAndForceComplete<seaTabWidget, std::true_type>,
+        // method 'addNewTab'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QUrl &, std::false_type>,
+        // method 'addNewTab'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onNewTabButtonClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
 
 void seaTabWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    (void)_o;
-    (void)_id;
-    (void)_c;
-    (void)_a;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<seaTabWidget *>(_o);
+        (void)_t;
+        switch (_id) {
+        case 0: _t->addNewTab((*reinterpret_cast< std::add_pointer_t<QUrl>>(_a[1]))); break;
+        case 1: _t->addNewTab(); break;
+        case 2: _t->onNewTabButtonClicked(); break;
+        default: ;
+        }
+    }
 }
 
 const QMetaObject *seaTabWidget::metaObject() const
@@ -95,6 +122,17 @@ void *seaTabWidget::qt_metacast(const char *_clname)
 int seaTabWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QTabWidget::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 3)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 3;
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 3)
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+        _id -= 3;
+    }
     return _id;
 }
 QT_WARNING_POP

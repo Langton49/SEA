@@ -36,7 +36,6 @@ private:
     void onMaximizeClicked();
     void onCloseClicked();
     void checkTabNumber();
-    void addNewTab();
     QMovie *loading;
     QIcon defaultFavicon;
     QIcon noEndpointFavicon;
@@ -49,6 +48,13 @@ private:
     void setupNewTabButton();
     Ui::TabWidget *ui;
     void updateTabTitle(int index, const QString &title);
+
+public slots:
+    void addNewTab(const QUrl &url = QUrl());
+
+private slots:
+    void onNewTabButtonClicked();
+
 
 };
 

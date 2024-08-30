@@ -1,4 +1,5 @@
 #include "seaTab.h"
+#include "customWebpage.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPushButton>
@@ -10,6 +11,8 @@ seaTab::seaTab(QWidget *parent)
     webView(new QWebEngineView(this)),
     networkManager(new QNetworkAccessManager(this))
 {
+    CustomWebPage *page = new CustomWebPage(this);
+    webView->setPage(page);
     QFrame *urlBarFrame = new QFrame(this);
     QHBoxLayout *urlBar = new QHBoxLayout();
     urlBar->setContentsMargins(11, 7, 11, 0);
@@ -67,6 +70,7 @@ seaTab::seaTab(QWidget *parent)
     connect(forwardButton, &QPushButton::clicked, this, &seaTab::onForwardClicked);
     connect(refreshButton, &QPushButton::clicked, this, &seaTab::onRefreshClicked);
     connect(urlSearch, &QLineEdit::returnPressed, this, &seaTab::processURL);
+    connect(page, &CustomWebPage::newTabRequested, this, &seaTab::onNewTabRequested);
 
 }
 
@@ -152,6 +156,11 @@ bool seaTab::eventFilter(QObject *obj, QEvent *event){
         }
     }
     return QWidget::eventFilter(obj, event);
+}
+
+void seaTab::onNewTabRequested(const QUrl &url)
+{
+    emit newTabRequested(url);
 }
 
 seaTab::~seaTab() {

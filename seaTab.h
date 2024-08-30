@@ -36,6 +36,7 @@ private slots:
     void onForwardClicked();
     bool doesUrlExist(const QUrl &url);
     void urlChange(const QUrl &url);
+    void onNewTabRequested(const QUrl &url);
 
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override;
@@ -48,6 +49,9 @@ private:
     QPushButton *refreshButton;
     QLineEdit *urlSearch;
     QPushButton *options;
+
+signals:
+    void newTabRequested(const QUrl &url);
 };
 
 

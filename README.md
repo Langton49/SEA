@@ -16,12 +16,12 @@ __🎞 DEMO:__\
 - C++ for core functionality
 - QT modules
 
-# How To Use
-## Prerequisites
+## How To Use
+### Prerequisites
 - QT Creator (Version 6.7.2 or later)
 - C++ Compiler, (preferably MSVC2019 or later)
 
-## Installation
+### Installation
 1. Clone this repository:
 ```bash
 git clone https://github.com/Langton49/SEA.git

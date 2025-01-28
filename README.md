@@ -35,6 +35,7 @@ __🎞Watch below for a short demo:__
 ## Contributing
 Because software development is an ongoing and collaborative process, contributions are welcome. Simply create a branch, commit your changes, push to the branch and open a pull request.
 
+## Contact
 __Author:__ Munashe Mukweya\
 __Email:__ munashemukweya2022@gmail.com\
 __GitHub:__ https://github.com/Langton49

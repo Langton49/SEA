@@ -27,7 +27,8 @@ git clone https://github.com/Langton49/SEA.git
 4. Build and run the project by pressing the green play button near the bottom left of the screen or pressing Ctrl+R.  **TIP:** Switch to the Release version when building and running the project for faster page loading times.
 
 ## Usage:
-Type into the search bar any webpage you would like to visit, whether it is a URL or a domain name and the browser will take you there. If the domain or URL cannot be resolved, the browser will default to a Google search. __🎞Watch below for a short demo:__
+Type into the search bar any webpage you would like to visit, whether it is a URL or a domain name and the browser will take you there. If the domain or URL cannot be resolved, the browser will default to a Google search.\
+__🎞Watch below for a short demo:__
 
 
 ## Contributing

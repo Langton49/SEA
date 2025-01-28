@@ -150,42 +150,41 @@ void seaTabWidget::addNewTab(const QUrl &url) {
             updateTabTitle(newIndex, title);
         });
 
-        connect(webView, &QWebEngineView::loadStarted, this, [this]() {
-            setTabIcon(currentIndex(), QIcon(loading->currentPixmap()));
-            loading->start();
-            connect(loading, &QMovie::frameChanged, this, [this]() {
-                setTabIcon(currentIndex(), QIcon(loading->currentPixmap()));
+        QMovie* tabLoading = new QMovie(":/icons/images/loading.gif", QByteArray(), webView);
+
+        connect(webView, &QWebEngineView::loadStarted, this, [this, newIndex, tabLoading]() {
+            setTabIcon(newIndex, QIcon(tabLoading->currentPixmap()));
+            tabLoading->start();
+            connect(tabLoading, &QMovie::frameChanged, this, [this, newIndex, tabLoading]() {
+                setTabIcon(newIndex, QIcon(tabLoading->currentPixmap()));
             });
         });
 
-        connect(webView, &QWebEngineView::loadFinished, this, [this, webView](bool ok) {
+        connect(webView, &QWebEngineView::loadFinished, this, [this, webView, newIndex, tabLoading](bool ok) {
             QWebEnginePage *page = webView->page();
-
             auto iconChangedPtr = std::make_shared<bool>(false);
 
-            connect(page, &QWebEnginePage::iconChanged, this, [this, iconChangedPtr](const QIcon &icon) {
-                loading->stop();
+            connect(page, &QWebEnginePage::iconChanged, this, [this, iconChangedPtr, newIndex, tabLoading](const QIcon &icon) {
+                tabLoading->stop();
                 *iconChangedPtr = true;
-                setTabIcon(currentIndex(), icon);
+                setTabIcon(newIndex, icon);
                 tabBar()->update();
             });
 
-            QTimer::singleShot(800, [this, ok, iconChangedPtr]() {
+            QTimer::singleShot(800, [this, ok, iconChangedPtr, newIndex, tabLoading]() {
                 if (!*iconChangedPtr) {
-                    loading->stop();
-                    if(!ok){
-                        setTabIcon(currentIndex(), noEndpointFavicon);
-                        tabBar()->update();
+                    tabLoading->stop();
+                    if(!ok) {
+                        setTabIcon(newIndex, noEndpointFavicon);
                     } else {
-                        setTabIcon(currentIndex(), defaultFavicon);
-                        tabBar()->update();
+                        setTabIcon(newIndex, defaultFavicon);
                     }
+                    tabBar()->update();
                 }
             });
         });
     }
 }
-
 void seaTabWidget::updateTabTitle(int index, const QString &title)
 {
     setTabText(index, title);

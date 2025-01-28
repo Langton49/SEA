@@ -46,9 +46,14 @@ constexpr auto qt_meta_stringdata_CLASSseaTabENDCLASS = QtMocHelpers::stringData
     "onBackClicked",
     "onRefreshClicked",
     "onForwardClicked",
+    "handleLoadFinished",
+    "ok",
     "doesUrlExist",
     "urlChange",
-    "onNewTabRequested"
+    "onNewTabRequested",
+    "interceptRequest",
+    "QWebEngineUrlRequestInfo&",
+    "info"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -61,7 +66,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSseaTabENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -69,17 +74,19 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSseaTabENDCLASS[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   68,    2, 0x06,    1 /* Public */,
+       1,    1,   80,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       4,    0,   71,    2, 0x08,    3 /* Private */,
-       5,    0,   72,    2, 0x08,    4 /* Private */,
-       6,    0,   73,    2, 0x08,    5 /* Private */,
-       7,    0,   74,    2, 0x08,    6 /* Private */,
-       8,    0,   75,    2, 0x08,    7 /* Private */,
-       9,    1,   76,    2, 0x08,    8 /* Private */,
-      10,    1,   79,    2, 0x08,   10 /* Private */,
-      11,    1,   82,    2, 0x08,   12 /* Private */,
+       4,    0,   83,    2, 0x08,    3 /* Private */,
+       5,    0,   84,    2, 0x08,    4 /* Private */,
+       6,    0,   85,    2, 0x08,    5 /* Private */,
+       7,    0,   86,    2, 0x08,    6 /* Private */,
+       8,    0,   87,    2, 0x08,    7 /* Private */,
+       9,    1,   88,    2, 0x08,    8 /* Private */,
+      11,    1,   91,    2, 0x08,   10 /* Private */,
+      12,    1,   94,    2, 0x08,   12 /* Private */,
+      13,    1,   97,    2, 0x08,   14 /* Private */,
+      14,    1,  100,    2, 0x08,   16 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QUrl,    3,
@@ -90,9 +97,11 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSseaTabENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,   10,
     QMetaType::Bool, QMetaType::QUrl,    3,
     QMetaType::Void, QMetaType::QUrl,    3,
     QMetaType::Void, QMetaType::QUrl,    3,
+    QMetaType::Void, 0x80000000 | 15,   16,
 
        0        // eod
 };
@@ -119,6 +128,9 @@ Q_CONSTINIT const QMetaObject seaTab::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'onForwardClicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'handleLoadFinished'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
         // method 'doesUrlExist'
         QtPrivate::TypeAndForceComplete<bool, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QUrl &, std::false_type>,
@@ -127,7 +139,10 @@ Q_CONSTINIT const QMetaObject seaTab::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<const QUrl &, std::false_type>,
         // method 'onNewTabRequested'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QUrl &, std::false_type>
+        QtPrivate::TypeAndForceComplete<const QUrl &, std::false_type>,
+        // method 'interceptRequest'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QWebEngineUrlRequestInfo &, std::false_type>
     >,
     nullptr
 } };
@@ -144,10 +159,12 @@ void seaTab::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 3: _t->onBackClicked(); break;
         case 4: _t->onRefreshClicked(); break;
         case 5: _t->onForwardClicked(); break;
-        case 6: { bool _r = _t->doesUrlExist((*reinterpret_cast< std::add_pointer_t<QUrl>>(_a[1])));
+        case 6: _t->handleLoadFinished((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 7: { bool _r = _t->doesUrlExist((*reinterpret_cast< std::add_pointer_t<QUrl>>(_a[1])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
-        case 7: _t->urlChange((*reinterpret_cast< std::add_pointer_t<QUrl>>(_a[1]))); break;
-        case 8: _t->onNewTabRequested((*reinterpret_cast< std::add_pointer_t<QUrl>>(_a[1]))); break;
+        case 8: _t->urlChange((*reinterpret_cast< std::add_pointer_t<QUrl>>(_a[1]))); break;
+        case 9: _t->onNewTabRequested((*reinterpret_cast< std::add_pointer_t<QUrl>>(_a[1]))); break;
+        case 10: _t->interceptRequest((*reinterpret_cast< std::add_pointer_t<QWebEngineUrlRequestInfo&>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -181,13 +198,13 @@ int seaTab::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 11;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 11)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 9;
+        _id -= 11;
     }
     return _id;
 }

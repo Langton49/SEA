@@ -17,7 +17,10 @@
 #include <QPushButton>
 #include <QLineEdit>
 #include <QIcon>
+#include "browserCache.h"
+#include <QWebEngineUrlRequestInfo>
 #include <QFrame>
+#include <QFontDatabase>
 
 class seaTab : public QWidget {
 
@@ -34,9 +37,11 @@ private slots:
     void onBackClicked();
     void onRefreshClicked();
     void onForwardClicked();
+    void handleLoadFinished(bool ok);
     bool doesUrlExist(const QUrl &url);
     void urlChange(const QUrl &url);
     void onNewTabRequested(const QUrl &url);
+    void interceptRequest(QWebEngineUrlRequestInfo &info);
 
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override;
@@ -49,6 +54,11 @@ private:
     QPushButton *refreshButton;
     QLineEdit *urlSearch;
     QPushButton *options;
+    BrowserCache *cache;
+    void setupCache();
+    void loadFromCache(const QUrl &url);
+    void cacheResponse(const QUrl &url, const QByteArray &data,
+                       const QString &contentType);
 
 signals:
     void newTabRequested(const QUrl &url);

@@ -6,6 +6,8 @@ __🎞 DEMO:__\
 \
 ![alt text](https://github.com/Langton49/SEA/blob/master/Demo/00-21-12.gif "SEA Web Browser in action.")
 
+GIF Made With: [Free Convert](https://www.freeconvert.com/)
+
 ## Features
 💻 Modern and intuitive UI\
 📑 Multi-Tab functionality\

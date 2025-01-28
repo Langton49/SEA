@@ -21,3 +21,18 @@ SEA web browser is a Windows application that allows users to surf the internet.
 1. Clone this repository:
 ```bash
 git clone https://github.com/Langton49/SEA.git
+```
+2. Open the project in QT Creator by opening the .pro file found in the folder.
+3. Set the compiler in the Project Settings Tab on the left.
+4. Build and run the project by pressing the green play button near the bottom left of the screen or pressing Ctrl+R.  **TIP:** Switch to the Release version when building and running the project for faster page loading times.
+
+## Usage:
+Type into the search bar any webpage you would like to visit, whether it is a URL or a domain name and the browser will take you there. If the domain or URL cannot be resolved, the browser will default to a Google search.
+
+## Contributing
+Because software development is an ongoing and collaborative process, contributions are welcome. Simply create a branch, commit your changes, push to the branch and open a pull request.
+
+__Author:__ Munashe Mukweya
+__Email:__ munashemukweya2022@gmail.com
+__GitHub:__ https://github.com/Langton49
+

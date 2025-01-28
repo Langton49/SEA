@@ -30,7 +30,7 @@ git clone https://github.com/Langton49/SEA.git
 Type into the search bar any webpage you would like to visit, whether it is a URL or a domain name and the browser will take you there. If the domain or URL cannot be resolved, the browser will default to a Google search.\
 \
 __🎞Watch below for a short demo:__ 
-![alt text](https://github.com/Langton49/SEA/blob/master/Assets/23-09-30.gif "SEA Web Browser in action.")
+![alt text](https://github.com/Langton49/SEA/blob/master/Demo/00-21-12.gif "SEA Web Browser in action.")
 
 
 ## Contributing

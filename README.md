@@ -5,7 +5,7 @@ SEA web browser is a Windows application that allows users to surf the internet.
 ## Features
 💻 Modern and intuitive UI\
 📑 Multi-Tab functionality\
-🧺 Browser caching\
+🧺 Browser caching
 
 ## Technologies Used
 - QT Framework (Version 6.7.2)

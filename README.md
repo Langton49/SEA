@@ -3,9 +3,9 @@
 SEA web browser is a Windows application that allows users to surf the internet. It was built using the QT Framework and C++. It utilizes the QWebEngine module to get web pages from user-typed URLs. The goal of this browser is to create a safe and private browsing experience specifically built only for the Windows OS.
 
 ## Features
-- 💻 Modern and intuitive UI
-- 📑 Multi-Tab functionality
-- 🧺 Browser caching
+💻 Modern and intuitive UI\
+📑 Multi-Tab functionality\
+🧺 Browser caching\
 
 ## Technologies Used
 - QT Framework (Version 6.7.2)

@@ -31,7 +31,7 @@ Type into the search bar any webpage you would like to visit, whether it is a UR
 \
 __🎞Watch below for a short demo:__
 Inline-style: 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://github.com/Langton49/SEA/blob/master/Assets/23-09-30.gif "Logo Title Text 1")
 
 
 ## Contributing

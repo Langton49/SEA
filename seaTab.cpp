@@ -5,14 +5,41 @@
 #include <QPushButton>
 #include <QLineEdit>
 #include <QLabel>
+#include <QWebEngineProfile>
+#include <QWebEngineUrlRequestInfo>
+#include <QWebEngineUrlRequestInterceptor>
+#include <QStandardPaths>
 
 seaTab::seaTab(QWidget *parent)
     : QWidget(parent),
     webView(new QWebEngineView(this)),
     networkManager(new QNetworkAccessManager(this))
 {
+    int fontId = QFontDatabase::addApplicationFont(":/../Downloads/Signika_Negative/SignikaNegative-VariableFont_wght.ttf");
+    if (fontId != -1) {
+        QString customFont = QFontDatabase::applicationFontFamilies(fontId).at(0);
+        QFont customAppFont(customFont, 10);
+        this->setFont(customAppFont);
+        urlSearch = new QLineEdit(this);
+        urlSearch->setStyleSheet("QLineEdit{border: none; font-family: '%1'; font-size: 12px; padding-left: 20px; background: #eeeeee; border-radius: 17px;}"
+                                 "QLineEdit:focus{background: #fff; border: 1px solid #0FF3E8;}");
+    }
     CustomWebPage *page = new CustomWebPage(this);
     webView->setPage(page);
+
+    QWebEngineSettings *settings = page->settings();
+    settings->setAttribute(QWebEngineSettings::LocalStorageEnabled, true);
+    settings->setAttribute(QWebEngineSettings::WebRTCPublicInterfacesOnly, true);
+    settings->setAttribute(QWebEngineSettings::AllowGeolocationOnInsecureOrigins, true);
+    settings->setAttribute(QWebEngineSettings::DnsPrefetchEnabled, true);
+    settings->setAttribute(QWebEngineSettings::ShowScrollBars, true);
+    settings->setAttribute(QWebEngineSettings::WebGLEnabled, true);  // Allow mixed content
+    QString userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
+    page->profile()->setHttpUserAgent(userAgent);
+    // Add this line if you want to enable DRM content (like some video players)
+    page->profile()->setPersistentCookiesPolicy(QWebEngineProfile::AllowPersistentCookies);
+
+    setupCache();
     QFrame *urlBarFrame = new QFrame(this);
     QHBoxLayout *urlBar = new QHBoxLayout();
     urlBar->setContentsMargins(11, 7, 11, 0);
@@ -72,6 +99,19 @@ seaTab::seaTab(QWidget *parent)
     connect(urlSearch, &QLineEdit::returnPressed, this, &seaTab::processURL);
     connect(page, &CustomWebPage::newTabRequested, this, &seaTab::onNewTabRequested);
 
+    class RequestInterceptor : public QWebEngineUrlRequestInterceptor {
+    public:
+        RequestInterceptor(seaTab* tab) : tab_(tab) {}
+        void interceptRequest(QWebEngineUrlRequestInfo &info) override {
+            tab_->interceptRequest(info);
+        }
+    private:
+        seaTab* tab_;
+    };
+
+    webView->page()->profile()->setUrlRequestInterceptor(
+        new RequestInterceptor(this));
+
 }
 
 void seaTab::onBackClicked(){
@@ -89,26 +129,29 @@ void seaTab::onRefreshClicked(){
 void seaTab::processURL()
 {
     QString urlText = urlSearch->text();
-    QUrl url1;
+    QUrl url;
+
+    // Existing URL processing code...
     QStringList parts = urlText.split('.', Qt::SkipEmptyParts);
-    if (!urlText.contains(' ') && parts.size() >= 2 && QUrl(urlText).scheme().isEmpty()){
-        url1 = QUrl::fromUserInput(urlText);
-        url1.setScheme("https");
+    if (!urlText.contains(' ') && parts.size() >= 2 &&
+        QUrl(urlText).scheme().isEmpty()) {
+        url = QUrl::fromUserInput(urlText);
+        url.setScheme("https");
     } else {
-        if(!QUrl(urlText).scheme().isEmpty()){
-            url1 = QUrl(urlText);
+        if (!QUrl(urlText).scheme().isEmpty()) {
+            url = QUrl(urlText);
         } else {
             QByteArray encodedString = QUrl::toPercentEncoding(urlText);
             QString newString = "https://www.google.com/search?q=" + encodedString;
-            url1 = QUrl(newString);
+            url = QUrl(newString);
         }
     }
-    webView->load(url1);
-    connect(webView, &QWebEngineView::loadFinished, this, [this]() {
-        QWebEnginePage *page = webView->page();
-        urlSearch->setText(page->url().toString());
 
-    });
+    // Try loading from cache first
+    loadFromCache(url);
+
+    // If not in cache or expired, load from network
+    webView->load(url);
     urlSearch->clearFocus();
 }
 
@@ -167,6 +210,79 @@ seaTab::~seaTab() {
     delete webView;
     delete networkManager;
 }
+
+void seaTab::setupCache()
+{
+    QString cachePath = QStandardPaths::writableLocation(
+                            QStandardPaths::CacheLocation) + "/browser-cache";
+    cache = new BrowserCache(cachePath, 50, 500); // 50MB RAM, 500MB disk
+}
+
+void seaTab::interceptRequest(QWebEngineUrlRequestInfo &info)
+{
+    QUrl url = info.requestUrl();
+
+    // Skip non-GET requests and non-cacheable content
+    if (info.requestMethod() != "GET" ||
+        url.scheme() == "data" ||
+        url.scheme() == "blob" ||
+        url.scheme() == "file") {
+        return;
+    }
+
+    // Check cache for valid entry
+    if (CacheEntry* entry = cache->retrieve(url)) {
+        // Add validation headers if available
+        if (!entry->etag.isEmpty()) {
+            info.setHttpHeader("If-None-Match", entry->etag.toUtf8());
+        }
+        if (!entry->lastModified.isEmpty()) {
+            info.setHttpHeader("If-Modified-Since",
+                               entry->lastModified.toUtf8());
+        }
+    }
+}
+
+void seaTab::handleLoadFinished(bool ok)
+{
+    if (!ok) return;
+
+    QWebEnginePage *page = webView->page();
+    QUrl url = page->url();
+
+    // Cache the current page
+    page->toHtml([this, url](const QString &html) {
+        QByteArray data = html.toUtf8();
+        cacheResponse(url, data, "text/html");
+    });
+
+    // Update URL bar
+    urlSearch->setText(url.toString());
+}
+
+void seaTab::loadFromCache(const QUrl &url)
+{
+    if (CacheEntry* entry = cache->retrieve(url)) {
+        if (entry->contentType == "text/html") {
+            webView->setHtml(QString::fromUtf8(entry->data), url);
+        }
+    }
+}
+
+void seaTab::cacheResponse(const QUrl &url, const QByteArray &data,
+                           const QString &contentType)
+{
+    // Get response headers from the page
+    QWebEnginePage *page = webView->page();
+
+    // Cache the response with a default 1-hour expiry
+    QDateTime expiry = QDateTime::currentDateTime().addSecs(3600);
+
+    cache->store(url, data, contentType, expiry);
+}
+
+
+
 
 
 

@@ -14,4 +14,9 @@
         <file>images/square.png</file>
         <file>images/white_cross.png</file>
     </qresource>
+    <qresource prefix="/fonts"/>
+    <qresource prefix="/">
+        <file>../Downloads/ocean-animal-font/OceanAnimal-2vvvX.ttf</file>
+        <file>../Downloads/Signika_Negative/SignikaNegative-VariableFont_wght.ttf</file>
+    </qresource>
 </RCC>

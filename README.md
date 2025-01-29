@@ -31,7 +31,7 @@ GIF Made With: [Free Convert](https://www.freeconvert.com/)
 - C++ for core functionality
 - QT modules
 
-## How To Use 🔨<a name="how-to-use">
+## How To Use 🤷‍♂️<a name="how-to-use">
 ### Prerequisites <a name="prerequisites">
 - QT Creator (Version 6.7.2 or later)
 - C++ Compiler, (preferably MSVC2019 or later)

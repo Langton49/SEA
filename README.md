@@ -10,13 +10,15 @@
 6. [Contact](#contact)
 
 ## Overview 📃 <a name="overview">
-SEA web browser is a Windows application that allows users to surf the internet. It was built using the QT Framework and C++. It utilizes the QWebEngine module to get web pages from user-typed URLs. The goal of this browser is to create a safe and private browsing experience specifically built only for the Windows OS.
+SEA web browser is a Windows application that allows users to surf the internet. It was built using the QT Framework and C++. It utilizes the QWebEngine module (derived from the Chromium browser) to get web pages from URLs. The goal of this browser is to create a safe and private browsing experience.
 
-__🎞 DEMO:__\
+## DEMO 🎞
 \
 ![alt text](https://github.com/Langton49/SEA/blob/master/Demo/00-21-12.gif "SEA Web Browser in action.")
 
 GIF Made With: [Free Convert](https://www.freeconvert.com/)
+
+## How I made it 🔨 <a name="how-i-made-it">
 
 ## Features <a name="features">
 💻 Modern and intuitive UI\

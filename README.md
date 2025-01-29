@@ -1,18 +1,19 @@
 # SEA WEB BROWSER 🖥
 # Table of Contents 📑
 1. [Overview](#overview)
-2. [Features](#features)
-3. [Technologies Used](#tech-used)
-4. [How To Use](#how-to-use)
+2. [DEMO](#demo)
+3. [Features](#features)
+4. [Technologies Used](#tech-used)
+5. [How To Use](#how-to-use)
    1. [Prerequisites](#prerequisites)
    2. [Installation](#installation)
-5. [Contributing](#contributing)
-6. [Contact](#contact)
+6. [Contributing](#contributing)
+7. [Contact](#contact)
 
 ## Overview 📃 <a name="overview">
 SEA web browser is a Windows application that allows users to surf the internet. It was built using the QT Framework and C++. It utilizes the QWebEngine module (derived from the Chromium browser) to get web pages from URLs. The goal of this browser is to create a safe and private browsing experience.
 
-## DEMO 🎞
+## DEMO 🎞 <a name="demo">
 \
 ![alt text](https://github.com/Langton49/SEA/blob/master/Demo/00-21-12.gif "SEA Web Browser in action.")
 

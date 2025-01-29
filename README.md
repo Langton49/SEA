@@ -3,7 +3,7 @@
 1. [Overview](#overview)
 2. [DEMO](#demo)
 3. [How I Made It](#how-i-made-it)
-   1. [Technologies Used](#tech-used)
+   1. [Technologies Stack](#tech-used)
 4. [How To Run It](#how-to-use)
    1. [Prerequisites](#prerequisites)
    2. [Installation](#installation)

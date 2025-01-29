@@ -1,4 +1,4 @@
-# SEA WEB BROWSER 🖥
+# SEA WEB BROWSER 🔎
 # Table of Contents 📑
 1. [Overview](#overview)
 2. [DEMO](#demo)

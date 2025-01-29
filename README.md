@@ -1,5 +1,5 @@
 # SEA WEB BROWSER 🔎
-# Table of Contents 📑
+## Table of Contents 📑
 1. [Overview](#overview)
 2. [DEMO](#demo)
 3. [How I Made It](#how-i-made-it)

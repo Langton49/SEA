@@ -2,9 +2,9 @@
 # Table of Contents 📑
 1. [Overview](#overview)
 2. [DEMO](#demo)
-3. [Features](#features)
+3. [How I Made It](#how-i-made-it)
 4. [Technologies Used](#tech-used)
-5. [How To Use](#how-to-use)
+5. [How To Run It](#how-to-use)
    1. [Prerequisites](#prerequisites)
    2. [Installation](#installation)
 6. [Contributing](#contributing)
@@ -19,10 +19,23 @@ SEA web browser is a Windows application that allows users to surf the internet.
 
 GIF Made With: [Free Convert](https://www.freeconvert.com/)
 
-## How I made it 🔨 <a name="how-i-made-it">
+## How I Made It 🔨 <a name="how-i-made-it">
+#### Browsing 💻
+To emulate modern browsers, the SEA Web Browser provides users with flexibility when looking up web pages or performing searches. In modern browsers like Chrome or Microsoft Edge, the address bar can either:
 
-## Features <a name="features">
-💻 Modern and intuitive UI\
+1. Navigate to a specified URL.
+2. Default to a search using the browser's default search engine (e.g., Google for Chrome, Bing for Edge).
+
+To achieve this functionality, I used a QLineEdit widget to capture user input. Once the user enters a value, the program processes the string to determine if it represents:
+
+- A valid URL: If the input is a valid URL, the program loads and displays the corresponding webpage in the QWebEngineView.
+- A domain name: If the input is a domain name, the program restructures it into a valid URL and loads the corresponding page.
+- A search query: If the input doesn't match a valid URL or domain name, the program defaults to a Google search.
+
+Additionally, if a valid URL is provided but cannot be resolved (e.g., 404 error), the browser will display an error message instead.
+\
+
+
 📑 Multi-Tab functionality\
 🧺 Browser caching
 
@@ -31,7 +44,7 @@ GIF Made With: [Free Convert](https://www.freeconvert.com/)
 - C++ for core functionality
 - QT modules
 
-## How To Use 🤷‍♂️<a name="how-to-use">
+## How To Run It 🤷‍♂️<a name="how-to-use">
 ### Prerequisites <a name="prerequisites">
 - QT Creator (Version 6.7.2 or later)
 - C++ Compiler, (preferably MSVC2019 or later)

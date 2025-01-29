@@ -33,11 +33,28 @@ To achieve this functionality, I used a QLineEdit widget to capture user input. 
 - A search query: If the input doesn't match a valid URL or domain name, the program defaults to a Google search.
 
 Additionally, if a valid URL is provided but cannot be resolved (e.g., 404 error), the browser will display an error message instead.
-\
 
+#### Multi-Tab Functionality
+Modern browsers allow users to open multiple tabs, each displaying its own webpage and loading separate URLs. However, Qt Creator does not provide a default widget that fully emulates this behavior. While QTabWidget allows switching between different tabs, it lacks dynamic content loading. To overcome this limitation, I created a custom class, which extends QTabWidget and provides a fully functional multi-tab browsing experience. The implementation includes:
 
-📑 Multi-Tab functionality\
-🧺 Browser caching
+##### Tab Management
+- A "New Tab" button, positioned in the corner of the tab bar that allows users to open new tabs dynamically.
+- Tabs are closable, and the browser closes if no tabs remain.
+- Each tab is equipped with a QWebEngineView instance to load and display web content.
+
+##### Tab Icons, Titles and Loading Indicators:
+- Tabs initially display a default favicon.
+- A loading animation is shown when a webpage is being loaded.
+- If a webpage has a favicon, it updates the tab icon accordingly.
+- If a URL fails to resolve (e.g., a 404 error), a fallback icon is displayed.
+- The browser updates the tab title based on the page title retrieved from QWebEngineView.
+
+##### Window Control Buttons
+To implement a clean and modern UI, I created custom window control buttons that match the theme and look of the browser window:
+- The interface includes custom minimize, maximize, and close buttons for window management.
+- The maximize button toggles between full-screen and normal mode.
+
+The custom tab widget is one of the things I was really proud to have achieved while completing this project as it shows the amazing capabilities of the QT framework.
 
 ## Technologies Used <a name="tech-used">
 - QT Framework (Version 6.7.2)

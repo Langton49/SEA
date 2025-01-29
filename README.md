@@ -3,15 +3,15 @@
 1. [Overview](#overview)
 2. [DEMO](#demo)
 3. [How I Made It](#how-i-made-it)
-4. [Technologies Used](#tech-used)
-5. [How To Run It](#how-to-use)
+   1. [Technologies Used](#tech-used)
+4. [How To Run It](#how-to-use)
    1. [Prerequisites](#prerequisites)
    2. [Installation](#installation)
-6. [Contributing](#contributing)
-7. [Contact](#contact)
+5. [Contributing](#contributing)
+6. [Contact](#contact)
 
 ## Overview 📃 <a name="overview">
-SEA web browser is a Windows application that allows users to surf the internet. It was built using the QT Framework and C++. It utilizes the QWebEngine module (derived from the Chromium browser) to get web pages from URLs. The goal of this browser is to create a safe and private browsing experience.
+SEA web browser is a desktop application that allows users to surf the internet. It was built using the QT Framework and C++. It utilizes the QWebEngine module (derived from the Chromium browser) to get web pages from URLs. The goal of this browser is to create a safe and private browsing experience.
 
 ## DEMO 🎞 <a name="demo">
 \
@@ -20,6 +20,11 @@ SEA web browser is a Windows application that allows users to surf the internet.
 GIF Made With: [Free Convert](https://www.freeconvert.com/)
 
 ## How I Made It 🔨 <a name="how-i-made-it">
+#### Technology Stack <a name="tech-used">
+- QT Framework (Version 6.7.2)
+- C++ (Version 13.2.0)
+- QT modules (QWebEngine, QtNetwork, etc.)
+
 #### Browsing 💻
 To emulate modern browsers, the SEA Web Browser provides users with flexibility when looking up web pages or performing searches. In modern browsers like Chrome or Microsoft Edge, the address bar can either:
 
@@ -54,28 +59,26 @@ To implement a clean and modern UI, I created custom window control buttons that
 - The interface includes custom minimize, maximize, and close buttons for window management.
 - The maximize button toggles between full-screen and normal mode.
 
-The custom tab widget is one of the things I was really proud to have achieved while completing this project as it shows the amazing capabilities of the QT framework.
-
-## Technologies Used <a name="tech-used">
-- QT Framework (Version 6.7.2)
-- C++ for core functionality
-- QT modules
+The custom tab widget is one of the things I was really proud to have achieved while completing this project as it shows the amazing capabilities of the QT framework and object-oriented programming.
 
 ## How To Run It 🤷‍♂️<a name="how-to-use">
 ### Prerequisites <a name="prerequisites">
-- QT Creator (Version 6.7.2 or later)
-- C++ Compiler, (preferably MSVC2019 or later)
+- QT (Version 6 or later)
+- QT Creator (recommended) (Version 14.0.0)
+- Any suitable C++ Compiler supporting C++11/14/17, (Project used MSVC2022 17.9.34728.123)
+- C++ (C++11 minimum, C++14 or C++17 recommended)
 
 ### Installation <a name="installation">
-1. Clone this repository:
+1. Clone the repository by running in the terminal:
 ```bash
 git clone https://github.com/Langton49/SEA.git
 ```
-2. Open the project in QT Creator by opening the .pro file found in the folder.
-3. Set the compiler in the Project Settings Tab on the left.
-4. Build and run the project by pressing the green play button near the bottom left of the screen or pressing Ctrl+R.  **TIP:** Switch to the Release version when building and running the project for faster page loading times.
-
-Type into the search bar any webpage you would like to visit, whether it is a URL or a domain name and the browser will take you there. If the domain or URL cannot be resolved, the browser will default to a Google search.
+2. Open Qt Creator and navigate to the cloned project folder. Select and open the .pro file to load the project.
+3. In Qt Creator, go to the Project Settings tab on the left.
+4. Click on Manage Kits near the top left of the Project Settings window.
+5. Choose and set the compiler you want to use for building the project.
+7. Build and run the project by clicking the green Play button near the bottom left of the screen or pressing Ctrl+R.  **TIP:** Switch to the Release version when building and running the project for faster page loading times during execution.
+8. Type into the search bar any webpage you would like to visit, whether it is a URL or a domain name and the browser will navigate there.
 
 ## Contributing 🤝<a name="contributing">
 Because software development is an ongoing and collaborative process, contributions are welcome. Simply create a branch, commit your changes, push to the branch and open a pull request.
